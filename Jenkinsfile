@@ -23,7 +23,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                bat 'docker run -d -p 3000:3000 --name foodapp-container foodapp'
+                bat 'docker run -d -p 8080:80 --name foodapp-container foodapp'
             }
         }
     }
