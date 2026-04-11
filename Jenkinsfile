@@ -15,15 +15,10 @@ pipeline {
             }
         }
 
-        stage('Stop Old Container') {
+        stage('Deploy to Kubernetes') {
             steps {
-                bat 'docker rm -f foodapp-container || exit 0'
-            }
-        }
-
-        stage('Run Container') {
-            steps {
-                bat 'docker run -d -p 8081:80 --name foodapp-container foodapp'
+                bat 'kubectl apply -f deployment.yaml'
+                bat 'kubectl apply -f service.yaml'
             }
         }
     }
