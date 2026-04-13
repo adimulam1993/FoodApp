@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        KUBECONFIG = 'C:\\Users\\Koniki Harika\\.kube\\config'
+    }
+
     stages {
 
         stage('Clone Code') {
@@ -12,6 +16,12 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 bat 'docker build -t foodapp .'
+            }
+        }
+
+        stage('Test Kubernetes Connection') {
+            steps {
+                bat 'kubectl get nodes'
             }
         }
 
